@@ -24,8 +24,6 @@ router.get("/productos/listar/:id", (req, res) => {
 });
 
 router.post("/productos/guardar", (req, res) => {
-  console.log(req.query.params);
-  console.log(req.body);
   const { body } = req;
   const product = instanceProductos.guardar(body);
   // res.send(product ?? { error: "Falta rellenar campos" });
