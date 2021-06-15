@@ -4,25 +4,21 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const handlebars = require("express-handlebars");
 
-app.engine(
-  "hbs",
-  handlebars({
-    extname: ".hbs",
-    defaultLayout: "index.hbs",
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views"
-  })
-);
-
-app.set("view engine", "hbs");
+app.set("view engine", "pug");
 app.set("views", "./views");
-app.use(express.static("public"));
 
 // ROUTER
 const router = require("./routes");
 app.use("/api", router);
+
+
+app.get("/", (req, res) => {
+  
+  res.render("post")
+  // res.redirect("/api/productos/listar")
+})
+
 
 // manejo de errores de aplicación
 app.use((err, req, res, next) => {
